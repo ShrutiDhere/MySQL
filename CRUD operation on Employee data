@@ -1,0 +1,186 @@
+                * Basic CRUD Operations On the Employee Data *
+
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 13
+Server version: 8.0.44 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| capgemini          |
+| information_schema |
+| library            |
+| mysql              |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> create database employee;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| capgemini          |
+| employee           |
+| information_schema |
+| library            |
+| mysql              |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> show tables;
+ERROR 1046 (3D000): No database selected
+mysql> use employee;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> insert into table values(empId int, name varchar(50),Mobile_no bigInt,email varchar(70),salary float,experience varchar(40),city varchar(40));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table values(empId int, name varchar(50),Mobile_no bigInt,email varchar(70),sala' at line 1
+mysql> create table employee(empId int, name varchar(50),Mobile_no bigInt,email varchar(70),salary float,experience varchar(40),city varchar(40));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into employee (empId int, name varchar(50),Mobile_no bigInt,email varchar(70),salary float,experience varchar(40),city varchar(40))values (1,'shruti Dhere',1234678,'shruti@gmail.com',40000,2 year,'pune');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'int, name varchar(50),Mobile_no bigInt,email varchar(70),salary float,experience' at line 1
+mysql> insert into employee (empId int, name varchar(50),Mobile_no bigInt,email varchar(70),salary float,experience varchar(40),city varchar(40))values (1,'shruti Dhere',1234678,'shruti@gmail.com',40000,'2 year','pune');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'int, name varchar(50),Mobile_no bigInt,email varchar(70),salary float,experience' at line 1
+mysql> insert into employee values (1,'shruti',1234678,'shruti@gmail.com',40000,'2 year','pune');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values (2,'Ajay',812346789,'Ajay@gmail.com',35000,'1 year','delhi');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values (3,'om',890846789,'om@gmail.com',25000,'6 Month','kolhapur');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values (4,'ram',987846789,'Ram@gmail.com',50000,'4 year','sangli');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values (5,'shyam',677996789,'shyam@gmail.com',30000,'1.5 year','solapur');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values (6,'sakshi',9878666789,'sakshi@gmail.com',42000,'2.5 year','dhule');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values (7,'yash',908796789,'yash@gmail.com',47000,'2 year','satara');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values (8,'vaibhav',7890636789,'vaibhav@gmail.com',55000,'3 year','pcmc');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_employee |
++--------------------+
+| employee           |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> desc employee;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| empId      | int         | YES  |     | NULL    |       |
+| name       | varchar(50) | YES  |     | NULL    |       |
+| Mobile_no  | bigint      | YES  |     | NULL    |       |
+| email      | varchar(70) | YES  |     | NULL    |       |
+| salary     | float       | YES  |     | NULL    |       |
+| experience | varchar(40) | YES  |     | NULL    |       |
+| city       | varchar(40) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-------+---------+------------+-------------------+--------+------------+----------+
+| empId | name    | Mobile_no  | email             | salary | experience | city     |
++-------+---------+------------+-------------------+--------+------------+----------+
+|     1 | shruti  |    1234678 | shruti@gmail.com  |  40000 | 2 year     | pune     |
+|     2 | Ajay    |  812346789 | Ajay@gmail.com    |  35000 | 1 year     | delhi    |
+|     3 | om      |  890846789 | om@gmail.com      |  25000 | 6 Month    | kolhapur |
+|     4 | ram     |  987846789 | Ram@gmail.com     |  50000 | 4 year     | sangli   |
+|     5 | shyam   |  677996789 | shyam@gmail.com   |  30000 | 1.5 year   | solapur  |
+|     6 | sakshi  | 9878666789 | sakshi@gmail.com  |  42000 | 2.5 year   | dhule    |
+|     7 | yash    |  908796789 | yash@gmail.com    |  47000 | 2 year     | satara   |
+|     8 | vaibhav | 7890636789 | vaibhav@gmail.com |  55000 | 3 year     | pcmc     |
++-------+---------+------------+-------------------+--------+------------+----------+
+8 rows in set (0.00 sec)
+
+mysql> udate employee set city='pune' where id=8;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'udate employee set city='pune' where id=8' at line 1
+mysql> udate employee set city= 'pune' where id=8;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'udate employee set city= 'pune' where id=8' at line 1
+mysql> udate employee set city = 'pune' where id=8;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'udate employee set city = 'pune' where id=8' at line 1
+mysql> update employee set city = 'pune' where empId =8;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set city = 'pcmc' where empId =1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| capgemini          |
+| employee           |
+| information_schema |
+| library            |
+| mysql              |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-------+---------+------------+-------------------+--------+------------+----------+
+| empId | name    | Mobile_no  | email             | salary | experience | city     |
++-------+---------+------------+-------------------+--------+------------+----------+
+|     1 | shruti  |    1234678 | shruti@gmail.com  |  40000 | 2 year     | pcmc     |
+|     2 | Ajay    |  812346789 | Ajay@gmail.com    |  35000 | 1 year     | delhi    |
+|     3 | om      |  890846789 | om@gmail.com      |  25000 | 6 Month    | kolhapur |
+|     4 | ram     |  987846789 | Ram@gmail.com     |  50000 | 4 year     | sangli   |
+|     5 | shyam   |  677996789 | shyam@gmail.com   |  30000 | 1.5 year   | solapur  |
+|     6 | sakshi  | 9878666789 | sakshi@gmail.com  |  42000 | 2.5 year   | dhule    |
+|     7 | yash    |  908796789 | yash@gmail.com    |  47000 | 2 year     | satara   |
+|     8 | vaibhav | 7890636789 | vaibhav@gmail.com |  55000 | 3 year     | pune     |
++-------+---------+------------+-------------------+--------+------------+----------+
+8 rows in set (0.00 sec)
+
+mysql> delete from employee where id = 6;
+ERROR 1054 (42S22): Unknown column 'id' in 'where clause'
+mysql> delete from employee where empId = 6;
+Query OK, 1 row affected (0.26 sec)
+
+mysql> select * from employee;
++-------+---------+------------+-------------------+--------+------------+----------+
+| empId | name    | Mobile_no  | email             | salary | experience | city     |
++-------+---------+------------+-------------------+--------+------------+----------+
+|     1 | shruti  |    1234678 | shruti@gmail.com  |  40000 | 2 year     | pcmc     |
+|     2 | Ajay    |  812346789 | Ajay@gmail.com    |  35000 | 1 year     | delhi    |
+|     3 | om      |  890846789 | om@gmail.com      |  25000 | 6 Month    | kolhapur |
+|     4 | ram     |  987846789 | Ram@gmail.com     |  50000 | 4 year     | sangli   |
+|     5 | shyam   |  677996789 | shyam@gmail.com   |  30000 | 1.5 year   | solapur  |
+|     7 | yash    |  908796789 | yash@gmail.com    |  47000 | 2 year     | satara   |
+|     8 | vaibhav | 7890636789 | vaibhav@gmail.com |  55000 | 3 year     | pune     |
++-------+---------+------------+-------------------+--------+------------+----------+
+7 rows in set (0.00 sec)
